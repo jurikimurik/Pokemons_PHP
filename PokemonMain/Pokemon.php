@@ -62,6 +62,11 @@ class Pokemon
 
     public function Attack(Pokemon $pokemonToAttack, AttackType $attackType): bool
     {
+        if ($this->bParalysed)
+        {
+            $this->restoreState();
+            return false;
+        }
         switch ($attackType)
         {
             case AttackType::BaseAttack;
@@ -78,6 +83,7 @@ class Pokemon
                     case PokemonType::Grass;
                     $pokemonToAttack->changeCurrentHp(-10*(1-$this->getGrassResistance()/100));
                     break;
+
                 }
                 return true;
             case AttackType::Confuse:

@@ -1,6 +1,7 @@
 <?php
 
 namespace Pokemons;
+require "../PokemonMain/Pokemon.php";
 
 use Pokemon;
 class WaterPokemon extends Pokemon

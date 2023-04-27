@@ -1,7 +1,7 @@
 <?php
 
 namespace Battle;
-require "PokemonMain/Pokemon.php";
+require "../PokemonMain/Pokemon.php";
 
 class Battle
 {
