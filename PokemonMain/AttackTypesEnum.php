@@ -5,5 +5,5 @@ enum AttackType
     case Paralyse;
     case Confuse;
     case AttackSelf;
-    case ParalysedAttack;
+    case Paralysed;
 }
