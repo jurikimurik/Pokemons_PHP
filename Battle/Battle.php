@@ -9,8 +9,15 @@ class Battle
 
     private \Pokemon $attacker;
     private \Pokemon $deffender;
+
+    private \Pokemon $player;
+    private \Pokemon $enemy;
+
     public function __construct($playerPokemon, $enemyPokemon)
     {
+        $this->player = $playerPokemon;
+        $this->enemy = $enemyPokemon;
+
         $playerPokemon->restoreState();
         $this->attacker = $playerPokemon;
         $enemyPokemon->restoreState();
@@ -37,12 +44,17 @@ class Battle
                     $this->lose($this->attacker);
                 }
             }
-            else
-            {
-                // PARAM TO CHANGE ADD TEXT WITH ATTACKS TO CHOOSE FROM
-                $testParam = 1;
+            else {
 
-                switch ($testParam)
+                if ($this->attacker == $this->player)
+                {
+                    $attackParam = 1;
+                }
+                else
+                {
+                    $attackParam = rand(1,3);
+                }
+                switch ($attackParam)
                 {
                     case 1:
                         $this->attacker->Attack($this->deffender, \AttackType::BaseAttack);
@@ -50,22 +62,42 @@ class Battle
                     case 2:
                         if ($this->attacker->Attack($this->deffender, \AttackType::Confuse))
                         {
+                            // works if confused
                             $this->deffender->confuse();
                         }
                         break;
                     case 3:
                         if ($this->attacker->Attack($this->deffender, \AttackType::Paralyse))
                         {
+                            // works if paralysed
                             $this->deffender->paralyse();
                         }
                         break;
                 }
             }
+
+            // swaps enemy and attacker
+            $this->swap();
         }
     }
 
+    private function swap()
+    {
+        $temp = $this->attacker;
+        $this->attacker = $this->deffender;
+        $this->deffender = $temp;
+    }
     private function lose($loser)
     {
+        if ($loser == $this->player)
+        {
+            //YOU LOST
+        }
+        else if ($loser == $this->enemy)
+        {
+            // ENEMY LOST
+        }
+        $this->player->restoreHp();
 
     }
 }

@@ -47,6 +47,10 @@ class Pokemon
     {
         return $this->currentHp;
     }
+    function restoreHp(): void
+    {
+        $this->currentHp = $this->maxHp;
+    }
 
     // Pokemon type
     private PokemonType $pokemonType = PokemonType::Normal;

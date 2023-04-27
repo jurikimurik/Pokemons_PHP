@@ -2,13 +2,13 @@
 require "visualScript.php";
 
 
-#include "Pokemons/FirePokemon.php";
+include "Pokemons/FirePokemon.php";
 
-#$Charizard = new \Pokemons\FirePokemon("Charizard",100);
+$Charizard = new \Pokemons\FirePokemon("Charizard",100);
 
-require "PokemonMain/Pokemon.php";
+#require "PokemonMain/Pokemon.php";
 
-$pokemon = new Pokemon("Charizard", 100, [0,0,0]);
+#$pokemon = new Pokemon("Charizard", 100, [0,0,0]);
 ?>
 
 <html>
@@ -20,7 +20,7 @@ $pokemon = new Pokemon("Charizard", 100, [0,0,0]);
 <body>
 
 <?php
-echo narysujPokemona($pokemon);
+echo narysujPokemona($Charizard);
 ?>
 
 
