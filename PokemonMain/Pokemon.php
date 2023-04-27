@@ -152,7 +152,6 @@ class Pokemon
     }
 
     // State
-
     private bool $confused = false;
     private bool $paralysed = false;
 
