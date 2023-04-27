@@ -1,6 +1,7 @@
 <?php
 
 require "PokemonTypesEnum.php";
+require "AttackTypesEnum.php";
 class Pokemon
 {
 
@@ -49,17 +50,27 @@ class Pokemon
 
     // Attack
 
-    public function Attack(Pokemon $enemyPokemon): void
+    public function Attack(Pokemon $pokemonToAttack, AttackType $attackType): bool
     {
-        $enemyPokemon->changeCurrentHp();
+        $pokemonToAttack->changeCurrentHp();
+        switch ($attackType)
+        {
+            case AttackType::BaseAttack;
+                $pokemonToAttack->changeCurrentHp(-10);
+                return true;
+            case AttackType::Confuse:
+            case AttackType::Paralyse;
+                return rand(0,1) == 1;
+        }
+        return false;
     }
 
     // Resistance
-    function setBaseResistance($baseFireResistance, $baseWaterResistance, $baseGrassResistance)
+    function setBaseResistance($baseFireResistance, $baseWaterResistance, $baseGrassResistance): void
     {
         $this->changeFireResistance($baseFireResistance);
         $this->changeWaterResistance($baseWaterResistance);
-        $this->changeGrassyResistance($baseGrassResistance);
+        $this->changeGrassResistance($baseGrassResistance);
     }
 
     // fire
