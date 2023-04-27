@@ -128,4 +128,23 @@ class Pokemon
         return $this->grassResistance;
     }
 
+    // State
+
+    private bool $bConfused = false;
+    private bool $bParalysed = false;
+
+    function confuse(): void
+    {
+        $this->bConfused = true;
+    }
+
+    function paralyse(): void
+    {
+        $this->bParalysed = true;
+    }
+    function restoreState(): void
+    {
+        $this->bConfused = false;
+        $this->bParalysed = false;
+    }
 }
