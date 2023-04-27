@@ -48,15 +48,37 @@ class Pokemon
         return $this->currentHp;
     }
 
+    // Pokemon type
+    private PokemonType $pokemonType = PokemonType::Normal;
+    private function setPokemonType($newPokemonType): void
+    {
+        $this->pokemonType = $newPokemonType;
+    }
+    function getPokemonType(): PokemonType
+    {
+        return $this->pokemonType;
+    }
     // Attack
 
     public function Attack(Pokemon $pokemonToAttack, AttackType $attackType): bool
     {
-        $pokemonToAttack->changeCurrentHp();
         switch ($attackType)
         {
             case AttackType::BaseAttack;
-                $pokemonToAttack->changeCurrentHp(-10);
+                switch ($this->pokemonType)
+                {
+                    case PokemonType::Fire;
+                    $pokemonToAttack->changeCurrentHp(-10*(1-$this->getFireResistance()/100));
+                    break;
+
+                    case PokemonType::Water;
+                    $pokemonToAttack->changeCurrentHp(-10*(1-$this->getWaterResistance()/100));
+                    break;
+
+                    case PokemonType::Grass;
+                    $pokemonToAttack->changeCurrentHp(-10*(1-$this->getGrassResistance()/100));
+                    break;
+                }
                 return true;
             case AttackType::Confuse:
             case AttackType::Paralyse;
@@ -79,7 +101,7 @@ class Pokemon
     {
         $this->fireResistance += $value;
     }
-    function getFireResistance($value): float
+    function getFireResistance(): float
     {
         return $this->fireResistance;
     }
@@ -90,7 +112,7 @@ class Pokemon
     {
         $this->waterResistance += $value;
     }
-    function getWaterResistance($value): float
+    function getWaterResistance(): float
     {
         return $this->waterResistance;
     }
@@ -101,7 +123,7 @@ class Pokemon
     {
         $this->grassResistance += $value;
     }
-    function getGrassResistance($value): float
+    function getGrassResistance(): float
     {
         return $this->grassResistance;
     }

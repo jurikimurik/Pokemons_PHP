@@ -1,5 +1,5 @@
 <?php
-enum Typ
+enum PokemonType
 {
     case Normal;
     case Fire;
