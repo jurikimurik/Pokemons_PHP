@@ -3,8 +3,10 @@ require "visualScript.php";
 
 
 include "Pokemons/FirePokemon.php";
+include "Pokemons/GrassPokemon.php";
 
 $Charizard = new \Pokemons\FirePokemon("Charizard",100);
+$Trawnik = new \Pokemons\GrassPokemon("Trawnik", 100);
 
 #require "PokemonMain/Pokemon.php";
 
@@ -21,6 +23,7 @@ $Charizard = new \Pokemons\FirePokemon("Charizard",100);
 
 <?php
 echo narysujPokemona($Charizard);
+echo narysujPokemona($Trawnik);
 ?>
 
 

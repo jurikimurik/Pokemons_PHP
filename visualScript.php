@@ -30,7 +30,7 @@ HTML;
 
 function narysujPokemona(Pokemon $pokemon) {
     $name = $pokemon->getName();
-    $type = $pokemon->getPokemonType();
+    $type = $pokemon->getPokemonTypeName();
     $maxHp = $pokemon->getMaxHp();
     $hp = $pokemon->getCurrentHp();
     $str = "<table>
@@ -42,7 +42,7 @@ function narysujPokemona(Pokemon $pokemon) {
     </tr>
     <tr>
         <td>"."$name"."</td>
-        <td>"."JAKIS"."</td>
+        <td>"."$type"."</td>
         <td>"."$maxHp"."</td>
         <td>"."$hp"."</td>
 </tr>
