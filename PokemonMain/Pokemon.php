@@ -58,6 +58,11 @@ class Pokemon
     {
         return $this->pokemonType;
     }
+
+    public function getPokemonTypeName(): string
+    {
+        return "";
+    }
     // Attack
 
     public function Attack(Pokemon $pokemonToAttack, AttackType $attackType): bool
@@ -73,15 +78,15 @@ class Pokemon
                 switch ($this->pokemonType)
                 {
                     case PokemonType::Fire;
-                    $pokemonToAttack->changeCurrentHp(-10*(1-$this->getFireResistance()/100));
+                    $pokemonToAttack->changeCurrentHp(-10*(1-$pokemonToAttack->getFireResistance()/100));
                     break;
 
                     case PokemonType::Water;
-                    $pokemonToAttack->changeCurrentHp(-10*(1-$this->getWaterResistance()/100));
+                    $pokemonToAttack->changeCurrentHp(-10*(1-$pokemonToAttack->getWaterResistance()/100));
                     break;
 
                     case PokemonType::Grass;
-                    $pokemonToAttack->changeCurrentHp(-10*(1-$this->getGrassResistance()/100));
+                    $pokemonToAttack->changeCurrentHp(-10*(1-$pokemonToAttack->getGrassResistance()/100));
                     break;
 
                 }
@@ -89,6 +94,14 @@ class Pokemon
             case AttackType::Confuse:
             case AttackType::Paralyse;
                 return rand(0,1) == 1;
+
+            case AttackType::AttackSelf;
+                $this->Attack($this, AttackType::BaseAttack);
+                $this->restoreState();
+                break;
+            case AttackType::Paralysed;
+                $this->restoreState();
+                break;
         }
         return false;
     }
@@ -136,21 +149,29 @@ class Pokemon
 
     // State
 
-    private bool $bConfused = false;
-    private bool $bParalysed = false;
+    private bool $confused = false;
+    private bool $paralysed = false;
 
+    function getConfused(): bool
+    {
+        return $this->confused;
+    }
     function confuse(): void
     {
-        $this->bConfused = true;
+        $this->confused = true;
     }
 
+    function getParalysed(): bool
+    {
+        return $this->paralysed;
+    }
     function paralyse(): void
     {
-        $this->bParalysed = true;
+        $this->paralysed = true;
     }
     function restoreState(): void
     {
-        $this->bConfused = false;
-        $this->bParalysed = false;
+        $this->confused = false;
+        $this->paralysed = false;
     }
 }
