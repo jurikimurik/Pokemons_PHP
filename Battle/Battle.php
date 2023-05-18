@@ -43,6 +43,9 @@ class Battle
     private \Pokemon $player;
     private \Pokemon $enemy;
 
+    public $playerWon;
+    public $enemyWon;
+
     public function __construct($playerPokemon, $enemyPokemon)
     {
         $this->player = $playerPokemon;
@@ -66,20 +69,16 @@ class Battle
             }
             else if ($this->attacker->getConfused())
             {
-                echo "ATTACK";
-
-
                 $this->attacker->Attack($this->attacker, \AttackType::AttackSelf);
                 $this->attacker->restoreState();
 
                 if ($this->attacker->getCurrentHp() <= 0)
                 {
+
                     $this->lose($this->attacker);
                 }
             }
             else {
-
-                echo "ATTACK";
 
                 if ($this->attacker == $this->player)
                 {
@@ -111,6 +110,11 @@ class Battle
                 }
             }
 
+        if ($this->deffender->getCurrentHp() <= 0)
+        {
+            $this->lose($this->deffender);
+        }
+
             // swaps enemy and attacker
             $this->swap();
         #}
@@ -126,15 +130,17 @@ class Battle
     {
         if ($loser == $this->player)
         {
-            echo "PRZEGRALES";
+            $this->playerWon = false;
+            $this->enemyWon = true;
             //YOU LOST
         }
         else if ($loser == $this->enemy)
         {
-            echo "WYGRALES";
+            $this->playerWon = true;
+            $this->enemyWon = false;
             // ENEMY LOST
         }
-        $this->player->restoreHp();
+        #$this->player->restoreHp();
 
     }
 }

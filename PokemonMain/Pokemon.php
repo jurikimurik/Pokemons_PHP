@@ -96,7 +96,6 @@ class Pokemon
                     case PokemonType::Grass;
                     $pokemonToAttack->changeCurrentHp(-10*(1-$pokemonToAttack->getGrassResistance()/100));
                     break;
-
                 }
                 return true;
             case AttackType::Confuse:

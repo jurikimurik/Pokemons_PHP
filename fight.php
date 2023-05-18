@@ -30,8 +30,11 @@ if(!isset($_SESSION['BATTLE']))
     $_SESSION['FIRST'] = serialize($Battle->getAttacker());
     $_SESSION['ANOTHER'] = serialize($Battle->getDeffender());
 
-    var_dump($_SESSION['FIRST']);
-    var_dump($_SESSION['ANOTHER']);
+    if($Battle->playerWon === true)
+        header("Location: win.php");
+
+    if($Battle->enemyWon === true)
+        header("Location: lose.php");
 }
 
 
