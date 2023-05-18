@@ -66,6 +66,9 @@ class Battle
             }
             else if ($this->attacker->getConfused())
             {
+                echo "ATTACK";
+
+
                 $this->attacker->Attack($this->attacker, \AttackType::AttackSelf);
                 $this->attacker->restoreState();
 
@@ -75,6 +78,8 @@ class Battle
                 }
             }
             else {
+
+                echo "ATTACK";
 
                 if ($this->attacker == $this->player)
                 {

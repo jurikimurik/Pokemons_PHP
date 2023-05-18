@@ -53,7 +53,7 @@ class Pokemon
     }
 
     // Pokemon type
-    private PokemonType $pokemonType = PokemonType::Normal;
+    protected PokemonType $pokemonType = PokemonType::Normal;
     private function setPokemonType($newPokemonType): void
     {
         $this->pokemonType = $newPokemonType;
@@ -78,9 +78,13 @@ class Pokemon
         }
         switch ($attackType)
         {
-            case AttackType::BaseAttack;
+            case AttackType::BaseAttack:
                 switch ($this->pokemonType)
                 {
+                    case PokemonType::Normal;
+                    $pokemonToAttack->changeCurrentHp(-10);
+                    break;
+
                     case PokemonType::Fire;
                     $pokemonToAttack->changeCurrentHp(-10*(1-$pokemonToAttack->getFireResistance()/100));
                     break;

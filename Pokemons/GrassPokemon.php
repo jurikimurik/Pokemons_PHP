@@ -9,6 +9,7 @@ class GrassPokemon extends Pokemon
     public function __construct($newName, $newMaxHp)
     {
         parent::__construct($newName, $newMaxHp, array(-50, 50, -50));
+        $this->pokemonType = \PokemonType::Grass;
     }
 
     public function getPokemonTypeName(): string
