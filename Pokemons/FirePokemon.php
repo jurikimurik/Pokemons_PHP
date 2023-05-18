@@ -1,7 +1,7 @@
 <?php
 
 namespace Pokemons;
-require "./PokemonMain/Pokemon.php";
+require_once "./PokemonMain/Pokemon.php";
 
 use Pokemon;
 class FirePokemon extends Pokemon
