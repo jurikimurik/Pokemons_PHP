@@ -1,10 +1,40 @@
 <?php
 
 namespace Battle;
-require "../PokemonMain/Pokemon.php";
+require_once "PokemonMain/Pokemon.php";
 
 class Battle
 {
+    /**
+     * @return \Pokemon
+     */
+    public function getAttacker(): \Pokemon
+    {
+        return $this->attacker;
+    }
+
+    /**
+     * @return \Pokemon
+     */
+    public function getDeffender(): \Pokemon
+    {
+        return $this->deffender;
+    }
+    /**
+     * @return \Pokemon
+     */
+    public function getPlayer(): \Pokemon
+    {
+        return $this->player;
+    }
+
+    /**
+     * @return \Pokemon
+     */
+    public function getEnemy(): \Pokemon
+    {
+        return $this->enemy;
+    }
     private $chosenAttackType;
 
     private \Pokemon $attacker;
@@ -23,13 +53,13 @@ class Battle
         $enemyPokemon->restoreState();
         $this->deffender = $enemyPokemon;
 
-        $this->battle();
+        #$this->battle();
     }
 
-    private function battle()
+    public function battle()
     {
-        while (true)
-        {
+        #while (true)
+        #{
             if ($this->attacker->getParalysed())
             {
                 $this->attacker->restoreState();
@@ -78,7 +108,7 @@ class Battle
 
             // swaps enemy and attacker
             $this->swap();
-        }
+        #}
     }
 
     private function swap()
@@ -91,10 +121,12 @@ class Battle
     {
         if ($loser == $this->player)
         {
+            echo "PRZEGRALES";
             //YOU LOST
         }
         else if ($loser == $this->enemy)
         {
+            echo "WYGRALES";
             // ENEMY LOST
         }
         $this->player->restoreHp();

@@ -1,7 +1,7 @@
 <?php
 
-require "PokemonTypesEnum.php";
-require "AttackTypesEnum.php";
+require_once "PokemonTypesEnum.php";
+require_once "AttackTypesEnum.php";
 class Pokemon
 {
 
@@ -69,9 +69,9 @@ class Pokemon
     }
     // Attack
 
-    public function Attack(Pokemon $pokemonToAttack, AttackType $attackType): bool
+    public function Attack(Pokemon &$pokemonToAttack, AttackType $attackType): bool
     {
-        if ($this->bParalysed)
+        if ($this->paralysed)
         {
             $this->restoreState();
             return false;
